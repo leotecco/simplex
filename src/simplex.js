@@ -1,16 +1,3 @@
-const matriz = [
-  [0.7, 1, 1, 0, 0, 0, 630],
-  [0.5, 0.83, 0, 1, 0, 0, 600],
-  [1, 0.66, 0, 0, 1, 0, 700],
-  [0.1, 0.25, 0, 0, 0, 1, 135],
-  [-10, -9, 0, 0, 0, 0, 0],
-];
-
-const lineSize = 5;
-const columnSize = 7;
-
-const printMatriz = (matriz) => console.table(matriz);
-
 const removeObjectiveFunctionLine = (matriz) =>
   matriz.filter((line, index) => index < matriz.length - 1);
 
@@ -104,14 +91,10 @@ const createNewMatriz = (matriz, lineSize, columnSize) => {
   return newMatriz;
 };
 
-// printMatriz(matriz);
+const stopConditionReached = (matriz, lineSize) => {
+  const lineObjectiveFunction = getLineObjectiveFunction(matriz, lineSize);
 
-// const newMatriz = createNewMatriz(matriz);
+  return lineObjectiveFunction.every((value) => value >= 0);
+};
 
-// printMatriz(newMatriz);
-
-// const newMatriz2 = createNewMatriz(newMatriz);
-
-// printMatriz(newMatriz2);
-
-export default createNewMatriz;
+export default { createNewMatriz, stopConditionReached };
