@@ -14,7 +14,7 @@ const printMatriz = (matriz) => console.table(matriz);
 const removeObjectiveFunctionLine = (matriz) =>
   matriz.filter((line, index) => index < matriz.length - 1);
 
-const getLineObjectiveFunction = (matriz) => matriz[lineSize - 1];
+const getLineObjectiveFunction = (matriz, lineSize) => matriz[lineSize - 1];
 
 const columnToArray = (matriz, columnIndex) =>
   matriz.map((line) => line[columnIndex]);
@@ -31,7 +31,7 @@ const getColumnGetOffBase = (lineObjectiveFunction) =>
     { index: 0, value: 0 }
   );
 
-const getLineEnterBase = (matriz, indexColumnGetOffBase) => {
+const getLineEnterBase = (matriz, indexColumnGetOffBase, columnSize) => {
   const matrizWithoutObjectiveFunctionLine = removeObjectiveFunctionLine(
     matriz
   );
@@ -78,10 +78,14 @@ const createNewLine = (
   return newLinePivot.map((value, index) => value * pivot + newLine[index]);
 };
 
-const createNewMatriz = (matriz) => {
-  const lineObjectiveFunction = getLineObjectiveFunction(matriz);
+const createNewMatriz = (matriz, lineSize, columnSize) => {
+  const lineObjectiveFunction = getLineObjectiveFunction(matriz, lineSize);
   const columnGetOffBase = getColumnGetOffBase(lineObjectiveFunction);
-  const lineEnterBase = getLineEnterBase(matriz, columnGetOffBase.index);
+  const lineEnterBase = getLineEnterBase(
+    matriz,
+    columnGetOffBase.index,
+    columnSize
+  );
   const pivot = getPivotValue(
     matriz,
     lineEnterBase.index,
@@ -100,12 +104,14 @@ const createNewMatriz = (matriz) => {
   return newMatriz;
 };
 
-printMatriz(matriz);
+// printMatriz(matriz);
 
-const newMatriz = createNewMatriz(matriz);
+// const newMatriz = createNewMatriz(matriz);
 
-printMatriz(newMatriz);
+// printMatriz(newMatriz);
 
-const newMatriz2 = createNewMatriz(newMatriz);
+// const newMatriz2 = createNewMatriz(newMatriz);
 
-printMatriz(newMatriz2);
+// printMatriz(newMatriz2);
+
+export default createNewMatriz;
