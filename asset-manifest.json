@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/simplex/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/simplex/static/js/main.5bfd6c9e.chunk.js",
-    "main.js.map": "/simplex/static/js/main.5bfd6c9e.chunk.js.map",
+    "main.js": "/simplex/static/js/main.0f15642d.chunk.js",
+    "main.js.map": "/simplex/static/js/main.0f15642d.chunk.js.map",
     "runtime-main.js": "/simplex/static/js/runtime-main.beedc8d2.js",
     "runtime-main.js.map": "/simplex/static/js/runtime-main.beedc8d2.js.map",
     "static/css/2.74bdede6.chunk.css": "/simplex/static/css/2.74bdede6.chunk.css",
     "static/js/2.3e8c1111.chunk.js": "/simplex/static/js/2.3e8c1111.chunk.js",
     "static/js/2.3e8c1111.chunk.js.map": "/simplex/static/js/2.3e8c1111.chunk.js.map",
     "index.html": "/simplex/index.html",
-    "precache-manifest.7e69ec8ee23d88e0e2df6c0bd64c6e02.js": "/simplex/precache-manifest.7e69ec8ee23d88e0e2df6c0bd64c6e02.js",
+    "precache-manifest.055e161610d29af348eb2efa9547d769.js": "/simplex/precache-manifest.055e161610d29af348eb2efa9547d769.js",
     "service-worker.js": "/simplex/service-worker.js",
     "static/css/2.74bdede6.chunk.css.map": "/simplex/static/css/2.74bdede6.chunk.css.map",
     "static/css/main.5ecd60fb.chunk.css.map": "/simplex/static/css/main.5ecd60fb.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.74bdede6.chunk.css",
     "static/js/2.3e8c1111.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.5bfd6c9e.chunk.js"
+    "static/js/main.0f15642d.chunk.js"
   ]
 }
