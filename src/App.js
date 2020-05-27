@@ -280,29 +280,27 @@ function App() {
   };
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" mt={4}>
-      <Paper>
-        <Box width={600} p={2}>
-          {!variables && !restrictions && (
-            <FormVariablesAndRestrictions
-              onSubmit={handleSubmitVariablesAndRestrictions}
-            />
-          )}
+    <Box display="flex" alignItems="center" justifyContent="center" p={2}>
+      <Box width="100%" maxWidth={600} p={2} component={Paper}>
+        {!variables && !restrictions && (
+          <FormVariablesAndRestrictions
+            onSubmit={handleSubmitVariablesAndRestrictions}
+          />
+        )}
 
-          {variables && restrictions && !matriz && (
-            <FormFuncVariablesAndRestrictions
-              variables={variables}
-              restrictions={restrictions}
-              onSubmit={handleSubmitFuncVariablesAndRestrictions}
-            />
-          )}
+        {variables && restrictions && !matriz && (
+          <FormFuncVariablesAndRestrictions
+            variables={variables}
+            restrictions={restrictions}
+            onSubmit={handleSubmitFuncVariablesAndRestrictions}
+          />
+        )}
 
-          {allMatriz &&
-            allMatriz.map((matriz, index) => (
-              <TableInteractions matriz={matriz} index={index} key={index} />
-            ))}
-        </Box>
-      </Paper>
+        {allMatriz &&
+          allMatriz.map((matriz, index) => (
+            <TableInteractions matriz={matriz} index={index} key={index} />
+          ))}
+      </Box>
     </Box>
   );
 }
