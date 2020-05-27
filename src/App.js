@@ -159,7 +159,7 @@ const FormFuncVariablesAndRestrictions = ({
         {Array(variables)
           .fill()
           .map((value, index) => (
-            <Box mr={1} key={`f[${index}]`}>
+            <Box mr={index < variables - 1 ? 1 : 0} key={`f[${index}]`}>
               <TextField
                 name={`f[${index}]`}
                 label={`x${index + 1}`}
