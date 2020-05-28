@@ -39,6 +39,12 @@ const TableInteractions = ({ matriz, index }) => {
 };
 
 const FormVariablesAndRestrictions = ({ onSubmit = () => {} }) => {
+  const [objective, setObjective] = React.useState();
+
+  const handleClick = (objective) => {
+    setObjective(objective);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     event.persist();
@@ -48,7 +54,7 @@ const FormVariablesAndRestrictions = ({ onSubmit = () => {} }) => {
     const restrictions = data.get("restrictions");
     const interactions = data.get("interactions");
 
-    onSubmit({ variables, restrictions, interactions });
+    onSubmit({ variables, restrictions, interactions, objective });
   };
 
   return (
@@ -90,15 +96,31 @@ const FormVariablesAndRestrictions = ({ onSubmit = () => {} }) => {
         />
       </Box>
 
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        size="large"
-        fullWidth
-      >
-        Maximizar
-      </Button>
+      <Box display="flex">
+        <Box width="100%" mr={1}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => handleClick("max")}
+            fullWidth
+          >
+            Maximizar
+          </Button>
+        </Box>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => handleClick("min")}
+          fullWidth
+        >
+          Minimizar
+        </Button>
+      </Box>
     </form>
   );
 };
@@ -106,6 +128,7 @@ const FormVariablesAndRestrictions = ({ onSubmit = () => {} }) => {
 const FormFuncVariablesAndRestrictions = ({
   variables,
   restrictions,
+  objective,
   onSubmit,
 }) => {
   const handleSubmit = (event) => {
@@ -113,12 +136,13 @@ const FormFuncVariablesAndRestrictions = ({
     event.persist();
 
     const data = new FormData(event.target);
+    const multiplier = objective === "max" ? -1 : 1;
 
     const objectiveFunction = Array(variables + restrictions + 1)
       .fill()
       .map((value, index) => {
         if (index < variables) {
-          return parseFloat(data.get(`f[${index}]`)) * -1;
+          return parseFloat(data.get(`f[${index}]`)) * multiplier;
         }
 
         return 0;
@@ -234,11 +258,13 @@ function App() {
   const [variables, setVariables] = React.useState(null);
   const [restrictions, setRestrictions] = React.useState(null);
   const [interactions, setInteractions] = React.useState(null);
+  const [objective, setObjective] = React.useState(null);
 
   const handleSubmitVariablesAndRestrictions = ({
     variables,
     restrictions,
     interactions,
+    objective,
   }) => {
     const lineSize = parseInt(restrictions) + 1;
     const columnSize = parseInt(variables) + parseInt(restrictions) + 1;
@@ -246,6 +272,7 @@ function App() {
     setVariables(parseInt(variables));
     setRestrictions(parseInt(restrictions));
     setInteractions(parseInt(interactions));
+    setObjective(objective);
     setLineSize(lineSize);
     setColumnSize(columnSize);
   };
@@ -282,16 +309,17 @@ function App() {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" p={2}>
       <Box width="100%" maxWidth={600} p={2} component={Paper}>
-        {!variables && !restrictions && (
+        {!variables && !restrictions && !objective && (
           <FormVariablesAndRestrictions
             onSubmit={handleSubmitVariablesAndRestrictions}
           />
         )}
 
-        {variables && restrictions && !matriz && (
+        {variables && restrictions && objective && !matriz && (
           <FormFuncVariablesAndRestrictions
             variables={variables}
             restrictions={restrictions}
+            objective={objective}
             onSubmit={handleSubmitFuncVariablesAndRestrictions}
           />
         )}
