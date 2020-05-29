@@ -6,14 +6,14 @@
 - Leonardo Jorge Tecco - 577472
 - Rafael Souza - 580090
 
-# Curso
+## Curso
 
 - Sistemas de Informação - 5o Termo
 
-# Professor
+## Professor
 
 - Sabatine
 
-# Site
+## Site
 
 - https://leotecco.github.io/simplex
