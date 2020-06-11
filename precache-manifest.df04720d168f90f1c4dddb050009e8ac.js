@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "db85808d0ddbdd61d0242b5a178837df",
+    "revision": "3d769bcdb87ec546593221d2b9c5e4f1",
     "url": "/simplex/index.html"
   },
   {
-    "revision": "8af2bc71309edefbcfc5",
+    "revision": "143137f7b2603c285590",
     "url": "/simplex/static/css/2.74bdede6.chunk.css"
   },
   {
-    "revision": "50e60d0d3e82bbf79aa5",
+    "revision": "10b51541d0f11f46a944",
     "url": "/simplex/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "8af2bc71309edefbcfc5",
-    "url": "/simplex/static/js/2.d97cca37.chunk.js"
+    "revision": "143137f7b2603c285590",
+    "url": "/simplex/static/js/2.93a32c64.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/simplex/static/js/2.d97cca37.chunk.js.LICENSE.txt"
+    "url": "/simplex/static/js/2.93a32c64.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "50e60d0d3e82bbf79aa5",
-    "url": "/simplex/static/js/main.d67e35d9.chunk.js"
+    "revision": "10b51541d0f11f46a944",
+    "url": "/simplex/static/js/main.4c35c838.chunk.js"
   },
   {
     "revision": "1c453ee442e8811be1f6",
