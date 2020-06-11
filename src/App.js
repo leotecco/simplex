@@ -16,11 +16,15 @@ import {
 
 import simplex from "./simplex";
 
-const TableInteractions = ({ matriz, index }) => {
+const TableInteractions = ({ matriz, index, final }) => {
   return (
     <Box mb={2}>
       <Box mb={1}>
-        <Typography variant="h4">Interação {index + 1}</Typography>
+        {final ? (
+          <Typography variant="h4">Interação final</Typography>
+        ) : (
+          <Typography variant="h4">Interação {index + 1}</Typography>
+        )}
       </Box>
 
       <Table>
@@ -131,6 +135,12 @@ const FormFuncVariablesAndRestrictions = ({
   objective,
   onSubmit,
 }) => {
+  const [solution, setSolution] = React.useState();
+
+  const handleClick = (solution) => {
+    setSolution(solution);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     event.persist();
@@ -170,7 +180,7 @@ const FormFuncVariablesAndRestrictions = ({
           })
       );
 
-    onSubmit([...matrizRestrictions, objectiveFunction]);
+    onSubmit({ solution, matriz: [...matrizRestrictions, objectiveFunction] });
   };
 
   return (
@@ -237,15 +247,31 @@ const FormFuncVariablesAndRestrictions = ({
           </Box>
         ))}
 
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        size="large"
-        fullWidth
-      >
-        Passo a passo
-      </Button>
+      <Box display="flex">
+        <Box width="100%" mr={1}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => handleClick("direct")}
+            fullWidth
+          >
+            Solução direta
+          </Button>
+        </Box>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => handleClick("step")}
+          fullWidth
+        >
+          Passo a passo
+        </Button>
+      </Box>
     </form>
   );
 };
@@ -260,6 +286,7 @@ function App() {
   const [interactions, setInteractions] = React.useState(null);
   const [objective, setObjective] = React.useState(null);
   const [impossible, setImpossible] = React.useState(null);
+  const [solution, setSolution] = React.useState(null);
 
   const handleSubmitVariablesAndRestrictions = ({
     variables,
@@ -278,8 +305,9 @@ function App() {
     setColumnSize(columnSize);
   };
 
-  const handleSubmitFuncVariablesAndRestrictions = (matriz) => {
+  const handleSubmitFuncVariablesAndRestrictions = ({ matriz, solution }) => {
     setMatriz(matriz);
+    setSolution(solution);
 
     const impossible = simplex.impossibleSolution(matriz, columnSize);
 
@@ -348,7 +376,12 @@ function App() {
           </Typography>
         )}
 
-        {allMatriz &&
+        {solution === "direct" && allMatriz && (
+          <TableInteractions matriz={allMatriz[allMatriz.length - 1]} final />
+        )}
+
+        {solution === "step" &&
+          allMatriz &&
           allMatriz.map((matriz, index) => (
             <TableInteractions matriz={matriz} index={index} key={index} />
           ))}
