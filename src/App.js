@@ -259,6 +259,7 @@ function App() {
   const [restrictions, setRestrictions] = React.useState(null);
   const [interactions, setInteractions] = React.useState(null);
   const [objective, setObjective] = React.useState(null);
+  const [impossible, setImpossible] = React.useState(null);
 
   const handleSubmitVariablesAndRestrictions = ({
     variables,
@@ -279,6 +280,13 @@ function App() {
 
   const handleSubmitFuncVariablesAndRestrictions = (matriz) => {
     setMatriz(matriz);
+
+    const impossible = simplex.impossibleSolution(matriz, columnSize);
+
+    if (impossible) {
+      setImpossible(true);
+      return;
+    }
 
     const allMatriz = [matriz];
     let countInterations = 0;
@@ -307,7 +315,17 @@ function App() {
   };
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" p={2}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      p={2}
+    >
+      <Typography variant="h3" align="center">
+        SIMPLEX PO20
+      </Typography>
+
       <Box width="100%" maxWidth={600} p={2} component={Paper}>
         {!variables && !restrictions && !objective && (
           <FormVariablesAndRestrictions
@@ -322,6 +340,12 @@ function App() {
             objective={objective}
             onSubmit={handleSubmitFuncVariablesAndRestrictions}
           />
+        )}
+
+        {impossible && (
+          <Typography variant="h5" align="center">
+            Solução impossível
+          </Typography>
         )}
 
         {allMatriz &&

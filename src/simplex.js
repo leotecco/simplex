@@ -97,4 +97,8 @@ const stopConditionReached = (matriz, lineSize) => {
   return lineObjectiveFunction.every((value) => value >= 0);
 };
 
-export default { createNewMatriz, stopConditionReached };
+const impossibleSolution = (matriz, columnSize) => {
+  return matriz.some((line) => line[columnSize - 1] < 0);
+};
+
+export default { createNewMatriz, stopConditionReached, impossibleSolution };
